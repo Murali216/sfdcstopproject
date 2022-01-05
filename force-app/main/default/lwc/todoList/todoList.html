@@ -1,0 +1,45 @@
+<template>
+    <lightning-card title="Todo List" style="width:100%">
+        <lightning-button-icon icon-name="utility:sync" slot="actions"></lightning-button-icon>
+        <lightning-layout >
+            <lightning-layout-item padding="around-small" size="12">
+        <ul class="slds-has-dividers_around-space">
+            <template for:each={taskList} for:item="toDo">
+                <li class="slds-item" key={toDo.id}>
+                   
+                        <lightning-layout vertical-align="center" horizontal-align="spread" >
+                            <lightning-layout-item padding="horizontal-small" >
+                        {toDo.name}
+                     </lightning-layout-item>
+                     <lightning-layout-item  padding="horizontal-small">
+                        <lightning-button-icon 
+                        icon-name="utility:delete" 
+                        name={toDo.id}
+                        onclick={deletetask}></lightning-button-icon>
+                     </lightning-layout-item>
+                     </lightning-layout>
+           
+                </li>
+            </template>
+               
+        </ul>
+    </lightning-layout-item>
+    </lightning-layout>
+        <p slot="footer">
+            <lightning-layout pull-to-boundary="small">
+                <lightning-layout-item padding="horizontal-small" flexibility="grow">
+            <lightning-input type="text" label="New Task" variant="label-hidden" placeholder="enter new task" value={newtask} onchange={fetchNewtask}></lightning-input> 
+        </lightning-layout-item>
+        <!-- Button to add New Task to the ToDo List -->
+        <lightning-layout-item padding="horizontal-small">
+            <lightning-button
+                variant="brand"
+                label="Add"
+                onclick={addTaskToList}>
+            </lightning-button>
+        </lightning-layout-item>
+        </lightning-layout>
+
+        </p>
+    </lightning-card>
+</template>
